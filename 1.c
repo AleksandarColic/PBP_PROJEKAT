@@ -56,6 +56,14 @@ main (int argc, char **argv)
   mysql_free_result (rezultat);
 
   printf("------------------------------------------------------------------------\n");
+
+  printf("Pritiskom na enter izvrsi drugi upit. \n");
+
+  char c;
+
+  while((c=getchar())!='\n');
+
+  
   printf("DRUGI UPIT \n");
 
   printf("STANJE PRE DRUGOG UPITA\n" );
@@ -79,7 +87,7 @@ main (int argc, char **argv)
   mysql_free_result (rezultat);
 
 
-  sprintf (query, "delete from stvar where korisnik_jmbg=2222222222222 and cena >2000");
+  sprintf (query, "delete from stvar where id=2 and cena >2000");
 
     /* Pokusava se sa izvrsavanjem upita. */
   if (mysql_query (konekcija, query) != 0)
@@ -106,6 +114,11 @@ main (int argc, char **argv)
   mysql_free_result (rezultat);
 
   printf("-------------------------------------------\n" );
+
+  printf("Pritiskom na enter izvrsi treci upit. \n");
+
+    while((c=getchar())!='\n');
+  
   printf("TRECI UPIT \n");
 
   printf("STANJE PRE TRECEG UPITA\n" );
@@ -158,7 +171,7 @@ main (int argc, char **argv)
   printf("-------------------------------------------\n" );
   printf("CETVRTI UPIT\n");
 
-       sprintf (query, "insert into stvar values(13,'novcanik',6,5000,'5.1.2017',1111111111111)");
+       sprintf (query, "insert into stvar values(13,'novcanik',6,5000,'5.1.2017',1)");
 
   /* Pokusava se sa izvrsavanjem upita. */
   if (mysql_query (konekcija, query) != 0)

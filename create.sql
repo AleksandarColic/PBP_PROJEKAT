@@ -1,12 +1,10 @@
-
-create database if not exists prodaja_polovnih_stvari_preko_interneta
-character set=utf8
-collate=utf8_bin;
+drop database if exists prodaja_polovnih_stvari_preko_interneta;
+create database if not exists prodaja_polovnih_stvari_preko_interneta;
 
 use prodaja_polovnih_stvari_preko_interneta;
 
 create table korisnik(
-       jmbg BIGINT primary key not null,
+       id_korisnika INT primary key not null,
        ime varchar(45) not null,
        prezime varchar(45) not null,
        grad varchar(45) not null,
@@ -20,9 +18,9 @@ create table stvar(
        kolicina int not null,
        cena int not null,
        datum_postavke date not null,
-       korisnik_jmbg BIGINT not null,
-       FOREIGN KEY (korisnik_jmbg)
-       REFERENCES korisnik(jmbg)
+       korisnik_id_korisnika int not null,
+       FOREIGN KEY (korisnik_id_korisnika)
+       REFERENCES korisnik(id_korisnika)
        on delete cascade
 );/*ok*/
 
@@ -91,14 +89,14 @@ create table isporuka(
 
 
 create table kupac(
-       jmbg BIGINT not null,
+       id_kupca INT not null,
        ime varchar(45) not null,
        prezime varchar(45) not null,
        grad varchar(45) not null,
        ulica varchar(45) not null,
        postanski_broj int not null,
-       isporuka_broj int  not null,
-       primary key(jmbg)
+       isporuka_broj int  ,
+       primary key(id_kupca)
 );
 
 
@@ -117,9 +115,9 @@ create table izlozena(
 
 create table prodata(
        cena int not null,
-       izlozena_stvar_id int primary key,
-       kupac_jmbg bigint not null,
-       foreign key (izlozena_stvar_id) references izlozena(stvar_id) on delete cascade
+       izlozena_stvar_id int primary key not null,
+       kupac_id_kupca int not null
+      /* foreign key (izlozena_stvar_id) references stvar(id) on delete cascade*/
 );
 
 
