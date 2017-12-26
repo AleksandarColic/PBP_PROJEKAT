@@ -87,7 +87,7 @@ main (int argc, char **argv)
   mysql_free_result (rezultat);
 
 
-  sprintf (query, "delete from stvar where id=2 and cena >2000");
+  sprintf (query, "delete from stvar where id=2");
 
     /* Pokusava se sa izvrsavanjem upita. */
   if (mysql_query (konekcija, query) != 0)
